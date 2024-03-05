@@ -1,20 +1,40 @@
 body {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    /* align-items: center;
     justify-content: center;
     height: 100vh;
-    margin: 0;
+    margin: 0; */
+    background-color: #ff6f69;
 }
 
 h1{
-    display: grid;
+    margin-top: 20px;
     
+    
+}
+
+.userInput{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+}
+
+label{
+    margin: 5px 0;
 }
 
 .game-board{
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-gap: 5px;
+}
+
+#playerOne,
+#playerTwo {
+    margin: 0 20px;
 }
 
 .cell {
@@ -24,10 +44,29 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 1.5rem;
     cursor: pointer;
+    background-color: #ffff;
 }
 
 .cell:hover{
     background-color: #eee;
+}
+
+.changeGame{
+    margin: 10px;
+}
+
+.scoreBoard{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+    
+    font-weight: bold;
+}
+
+.playerOneScore,
+.playerTwoScore {
+    margin: 0 20px;
+    /* background-color: #ffff; */
 }

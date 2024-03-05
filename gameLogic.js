@@ -7,9 +7,9 @@ const gameLogic = (function (){
         currentPlayer = 'X'
     }
 
-    function makeMove(index){
+    function makeMove(index, playerName){
         if(board[index] === null){
-            board[index] = currentPlayer;
+            board[index] = playerName;
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             return true; // Move Successful
         }
@@ -33,6 +33,7 @@ const gameLogic = (function (){
     }
 
     return {
+        currentGameBoard,
         resetBoard,
         makeMove,
         checkWinner,
