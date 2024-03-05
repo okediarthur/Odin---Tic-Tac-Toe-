@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+    <form action="" class="userInput">
+      <label for="playerOne">Player One:</label>
+      <input type="text" id="playerOne" />
+      <label for="playerTwo">Player Two</label>
+      <input type="text" id="playerTwo" />
+    </form>
+    <div class="changeGame">
+      <button class="start">Start Game</button>
+      <button class="restart">Restart Game</button>
+    </div>
+    <div class="game-board" id="board">
+      <!-- Create 9 cells for the tic tac toe game -->
+      <div class="cell" data-index="0"></div>
+      <div class="cell" data-index="1"></div>
+      <div class="cell" data-index="2"></div>
+      <div class="cell" data-index="3"></div>
+      <div class="cell" data-index="4"></div>
+      <div class="cell" data-index="5"></div>
+      <div class="cell" data-index="6"></div>
+      <div class="cell" data-index="7"></div>
+      <div class="cell" data-index="8"></div>
+    </div>
+    <div class="scoreBoard">
+      <div class="playerOneScore">Player 1 Score:</div>
+      <div class="playerOneDisplay"></div>
+      <div class="playerTwoScore">Player 2 Score:</div>
+      <div class="playerTwoDisplay"></div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
