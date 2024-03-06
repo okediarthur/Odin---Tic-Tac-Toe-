@@ -18,9 +18,9 @@ const ui = (function(){
         const currentPlayerName = currentPlayer === 'X' ? player1Input.value : player2Input.value;
         if(gameLogic.makeMove(index, currentPlayerName)){
             updateBoard();
-            const winner = gameLogic.checkWinner();
+            const winnerName = gameLogic.checkWinner();
             if(winner){
-                alert(`Player ${winner} wins!`);
+                alert(`Player ${winnerName} wins!`);
                 gameLogic.resetBoard();
                 updateBoard();
             } else {

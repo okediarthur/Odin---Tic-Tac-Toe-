@@ -3,8 +3,10 @@ const gameLogic = (function (){
     let currentPlayer = 'X';
 
     function resetBoard() {
+        // console.log('Board Reset');
         board = Array(9).fill(null);
         currentPlayer = 'X'
+        board.set('');
     }
 
     function makeMove(index, playerName){
@@ -26,10 +28,10 @@ const gameLogic = (function (){
             const [a, b, c] = combination;
 
             if(board[a] && board[a] === board[b] && board[a] === board[c]){ 
-                return true;
+                return board[a];
             }
         }
-        return false;
+        return null;
     }
 
     return {
