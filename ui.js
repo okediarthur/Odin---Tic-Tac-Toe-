@@ -9,7 +9,7 @@ const ui = (function(){
 
     function updateBoard(){
         for(let i = 0; i < cells.length; i++){
-            cells[i].textContent = gameLogic.currentGameBoard[i] || '';
+            cells[i].textContent = gameLogic.board[i] || '';
         }
     }
 
