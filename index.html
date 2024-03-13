@@ -7,37 +7,24 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <h1>Tic Tac Toe</h1>
-    <form action="" class="userInput">
-      <label for="playerOne">Player One:</label>
-      <input type="text" id="playerOne" />
-      <label for="playerTwo">Player Two:</label>
-      <input type="text" id="playerTwo" />
-    </form>
-    <div class="changeGame">
-      <button class="start">Start Game</button>
-      <button class="restart">Restart Game</button>
+    <div class="gameContainer">
+      <h1 class="title">Tic Tac Toe</h1>
+      <div class="gameAction"></div>
+
+      <div class="gameBoard">
+        <div class="tile" data-row="0" data-col="0"></div>
+        <div class="tile" data-row="0" data-col="1"></div>
+        <div class="tile" data-row="0" data-col="2"></div>
+        <div class="tile" data-row="1" data-col="0"></div>
+        <div class="tile" data-row="1" data-col="1"></div>
+        <div class="tile" data-row="1" data-col="2"></div>
+        <div class="tile" data-row="2" data-col="0"></div>
+        <div class="tile" data-row="2" data-col="1"></div>
+        <div class="tile" data-row="2" data-col="2"></div>
+      </div>
+      <button class="resetBtn">RESET GAME</button>
     </div>
-    <div class="game-board" id="board">
-      <!-- Create 9 cells for the tic tac toe game -->
-      <div class="cell" id="b1" data-index="0"></div>
-      <div class="cell" id="b2" data-index="1"></div>
-      <div class="cell" id="b3" data-index="2"></div>
-      <div class="cell" id="b4" data-index="3"></div>
-      <div class="cell" id="b5" data-index="4"></div>
-      <div class="cell" id="b6" data-index="5"></div>
-      <div class="cell" id="b7" data-index="6"></div>
-      <div class="cell" id="b8" data-index="7"></div>
-      <div class="cell" id="b9" data-index="8"></div>
-    </div>
-    <div class="scoreBoard">
-      <div class="playerOneScore">Player 1 Score:</div>
-      <div class="playerOneDisplay"></div>
-      <div class="playerTwoScore">Player 2 Score:</div>
-      <div class="playerTwoDisplay"></div>
-    </div>
-    <script src="gameLogic.js"></script>
-    <script src="ui.js"></script>
-    <script src="app.js"></script>
+
+    <script type="module" src="script.js"></script>
   </body>
 </html>
