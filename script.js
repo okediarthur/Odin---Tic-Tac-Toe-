@@ -1,62 +1,77 @@
-const ui = (function(){
-    const boardElement = document.getElementById('board');
-    const cells = document.querySelectorAll('.cell');
-    const resetButton = document.getElementById('restart');
-    const startButton = document.getElementById('start');
-    const player1Input = document.getElementById('playerOne');
-    const player2Input = document.getElementById('playerTwo');
-    let currentPlayer = 'X';
+import {Game} from "./gameLogic.js";
 
-    function updateBoard(){
-        for(let i = 0; i < cells.length; i++){
-            cells[i].textContent = gameLogic.board[i] || '';
+disbaleTiles();
+
+let game;
+let gameAction = document.querySelector(".gameAction");
+let gameText = document.createElement("p");
+let startButton = document.createElement("button");
+let resetBtn = document.querySelector(".resetBtn");
+resetBtn.addEventListener("click", gameReset);
+
+gameAction.appendChild(startButton)
+startButton.textContent = "START GAME";
+startButton.addEventListener("click", () => {
+    gameLoop()
+})
+
+function updatePlayText(){
+    gameText.textContent = `It's ${game.getCurrentPlayerName()}'s turn!`
+}
+
+function gameLoop(){
+    game = new GAME()
+    gameAction.removeChild(startButton);
+    gameAction.appendChild(gameText);
+
+    updatePlayText();
+
+    let tiles = Array.from(document.getElementsByClassName("tile"));
+
+    tiles.forEach(tile => {
+        tile.setAttribute("class", "tile active")
+        tile.addEventListener("click", clickTileHandler)
+    });
+}
+
+function clickTileHandler(){
+    const row = parseInt(this.dataset.row, 10);
+    const col = parseInt(this.dataset.col, 10);
+
+    if(game.isValidTile(row, col)){
+        game.markTile(row, col);
+
+        if(game.isVictory()){
+            gameText.textContent = `${game.getCurrentPlayerName()} wins!`;
+            disbaleTiles()
+            return
         }
-    }
-
-    function handleCellClick(event){
-        const index = event.target.dataset.index;
-        const currentPlayerName = currentPlayer === 'X' ? player1Input.value : player2Input.value;
-        if(gameLogic.makeMove(index, currentPlayerName)){
-            updateBoard();
-            const winnerName = gameLogic.checkWinner();
-            if(winner){
-                alert(`Player ${winnerName} wins!`);
-                gameLogic.resetBoard();
-                updateBoard();
-            } else {
-                togglePlayer();
-            }
+        if(game.isBoardFull()){
+            gameText.textContent = "It's a tie!";
+            disbaleTiles();
+            return;
         }
-    }
 
-    function togglePlayer(){
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        game.switchTurn();
+        updatePlayText();
     }
+}
 
-    function handleResetButtonClick(){
-        gameLogic.resetBoard();
-        updateBoard();
-        player1Input.value = '';
-        player2Input.value = '';
-    }
+function disbaleTiles(){
+    let tiles = Array.from(document.getElementById("tile"));
 
-    function handleStartButtonClick(){
-        //Performs initialisation logic
-        gameLogic.resetBoard();
-        updateBoard();
-        currentPlayer = 'X';
-    }
+    tiles.forEach(tile => {
+        tile.setAttribute("class", "tile disabled")
+        tile.removeEventListener("click", clickTileHandler)
+    });
+}
 
-    function initialize(){
-        cells.forEach(cell => {
-            cell.addEventListener('click', handleCellClick);
-        });
-        resetButton.addEventListener('click', handleResetButtonClick);
-
-        startButton.addEventListener('click', handleStartButtonClick);
-    }
-    return {
-        updateBoard,
-        initialize,
-    };
-})();
+function gameReset(){
+    game.resetGame();
+    gameAction.removeChild(gameText);
+    gameAction.appendChild(startButton);
+    disbaleTiles()
+    document.querySelectorAll('.tile').forEach(tile => {
+        tile.textContent = '';
+    });
+}
