@@ -1,4 +1,4 @@
-import {Player} from "./player.js";
+import { Player } from "./player.js";
 
 export class Game {
     _board;
@@ -10,8 +10,8 @@ constructor() {
     this._board = new Array(3).fill(null).map(() => new Array(3).fill(0));
 
     this._players = [
-        new Player("Player one", "X"),
-        new Player("Player two", "O"),
+        new Player("player one", "X"),
+        new Player("player two", "O"),
     ];
 
     this._currentPlayer = 0;
@@ -35,11 +35,11 @@ markTile(row, col) {
     throw new Error("Invalid tile");
 }
 
-isValidTile(row, col){
+isValidTile(row, col) {
     return this._board[row][col] === 0;
 }
 
-isVictory(){
+isVictory() {
     const symbols = ['X', 'O'];
     for(let i = 0; i < 3; i++){
         if((this._board[i][0] === this._board[i][1] && this._board[i][0] === this._board[i][2]) && symbols.includes(this._board[i][0])) {
@@ -49,7 +49,7 @@ isVictory(){
             return true;
         }
     }
-    if((this._board[0][0] === this._board[1][1] && this._board[0][0] === this._board[2][2]) && symbols.includes(this.board[0][0])) {
+    if((this._board[0][0] === this._board[1][1] && this._board[0][0] === this._board[2][2]) && symbols.includes(this._board[0][0])) {
         return true;
     }
     if((this._board[0][2] === this._board[1][1] && this._board[0][2] === this._board[2][0]) && symbols.includes(this._board[0][2])) {
@@ -58,10 +58,10 @@ isVictory(){
     return false;
 }
 
-isBoardFull(){
+isBoardFull() {
     for(let i = 0; i < 3; i++){
         for(let j = 0; j < 3; j++){
-            if(this._board[i][j] === 0){
+            if(this._board[i][j] === 0) {
                 return false;
             }
         }
@@ -69,7 +69,7 @@ isBoardFull(){
     return true;
 }
 
-resetGame(){
+resetGame() {
     this._board = new Array(3).fill(null).map(() => new Array(3).fill(null));
     this._currentPlayer = 0;
 }

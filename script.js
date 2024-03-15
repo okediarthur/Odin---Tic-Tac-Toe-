@@ -1,4 +1,4 @@
-import {Game} from "./gameLogic.js";
+import { Game } from "gameLogic.js";
 
 disbaleTiles();
 
@@ -9,10 +9,10 @@ let startButton = document.createElement("button");
 let resetBtn = document.querySelector(".resetBtn");
 resetBtn.addEventListener("click", gameReset);
 
-gameAction.appendChild(startButton)
+gameAction.appendChild(startButton);
 startButton.textContent = "START GAME";
 startButton.addEventListener("click", () => {
-    gameLoop()
+    gameLoop();
 })
 
 function updatePlayText(){
@@ -20,7 +20,7 @@ function updatePlayText(){
 }
 
 function gameLoop(){
-    game = new GAME()
+    game = new Game();
     gameAction.removeChild(startButton);
     gameAction.appendChild(gameText);
 
@@ -43,8 +43,8 @@ function clickTileHandler(){
 
         if(game.isVictory()){
             gameText.textContent = `${game.getCurrentPlayerName()} wins!`;
-            disbaleTiles()
-            return
+            disableTiles()
+            return;
         }
         if(game.isBoardFull()){
             gameText.textContent = "It's a tie!";
@@ -58,7 +58,7 @@ function clickTileHandler(){
 }
 
 function disbaleTiles(){
-    let tiles = Array.from(document.getElementById("tile"));
+    let tiles = Array.from(document.getElementsByClassName("tile"));
 
     tiles.forEach(tile => {
         tile.setAttribute("class", "tile disabled")
@@ -70,7 +70,7 @@ function gameReset(){
     game.resetGame();
     gameAction.removeChild(gameText);
     gameAction.appendChild(startButton);
-    disbaleTiles()
+    disbaleTiles();
     document.querySelectorAll('.tile').forEach(tile => {
         tile.textContent = '';
     });
